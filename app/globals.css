@@ -1,49 +1,163 @@
+/* === Tayo Design System === */
+
+/* Google Fonts — Cormorant Garamond (display) + Inter (body) */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap');
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Brand colours (exact from Figma) */
+  --yellow: #fcfc6a;
+  --beige: #e1cdb9;
+  --black: #000000;
+  --white: #ffffff;
+  --gray: #d9d9d9;
+
+  /* Typography */
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-body: 'Inter', 'Helvetica Neue', Arial, sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-html {
-  height: 100%;
-}
+html { scroll-behavior: smooth; }
 
-html,
 body {
-  max-width: 100vw;
-  overflow-x: hidden;
+  background: var(--yellow);
+  color: var(--black);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
 }
 
-body {
-  min-height: 100%;
+a { color: inherit; text-decoration: none; }
+
+/* ── Typography helpers ── */
+.display {
+  font-family: var(--font-display);
+  font-weight: 400;
+}
+.display-italic {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-style: italic;
+}
+.label {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0.5;
+}
+.body-sm {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  line-height: 1.7;
+  opacity: 0.7;
+}
+
+/* ── Buttons ── */
+.btn {
+  display: inline-block;
+  padding: 0.65rem 1.8rem;
+  border: 1px solid currentColor;
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.18s ease, color 0.18s ease;
+  background: transparent;
+}
+.btn:hover {
+  background: var(--black);
+  color: var(--yellow);
+  border-color: var(--black);
+}
+.btn-inv {
+  display: inline-block;
+  padding: 0.65rem 1.8rem;
+  border: 1px solid var(--yellow);
+  color: var(--yellow);
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.18s ease, color 0.18s ease;
+  background: transparent;
+}
+.btn-inv:hover {
+  background: var(--yellow);
+  color: var(--black);
+}
+
+/* ── Layout helpers ── */
+.container {
+  max-width: 1728px;
+  margin: 0 auto;
+  padding: 0 3rem;
+}
+@media (max-width: 768px) {
+  .container { padding: 0 1.5rem; }
+}
+
+/* ── Section bands ── */
+.band-yellow { background: var(--yellow); }
+.band-beige  { background: var(--beige); }
+.band-black  { background: var(--black); color: var(--white); }
+
+/* ── Product / image placeholders ── */
+.img-placeholder {
+  background: var(--gray);
+  border: 1px solid rgba(0,0,0,0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(0,0,0,0.2);
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-family: var(--font-body);
+}
+
+/* ── Card grid ── */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border: 1px solid var(--black);
+}
+@media (max-width: 900px) {
+  .product-grid { grid-template-columns: 1fr; }
+}
+.product-card {
+  padding: 2.5rem;
+  border-right: 1px solid var(--black);
+  background: var(--beige);
   display: flex;
   flex-direction: column;
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
-
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
+.product-card:last-child { border-right: none; }
+@media (max-width: 900px) {
+  .product-card {
+    border-right: none;
+    border-bottom: 1px solid var(--black);
   }
+  .product-card:last-child { border-bottom: none; }
 }
+
+/* ── Divider ── */
+.divider { border: none; border-top: 1px solid rgba(0,0,0,0.1); }
+
+/* ── Image strip ── */
+.image-strip {
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.image-strip::-webkit-scrollbar { display: none; }
